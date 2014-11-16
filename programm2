@@ -1,89 +1,61 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include <cstdlib>
 #include <string.h>
+#include <stdio.h>
+#include <iostream>
+//#include <conio.h>
+using namespace std;
 
-FILE *file;
-int table[1000][1000];
-int otvet[100];
-int x,y,h,g,kolvo,kotv,i,j;
-
-void tablebuild();
-void recognize();
-void chekmark();
-void otvprint();
-void tableshow();
-
-int main(int argc, char *argv[]){
-	file = fopen(argv[1], "r");
-
-	tablebuild();
-	recognize();
-	chekmark();
-	otvprint();
-}
-
-void tablebuild(){
-	char ch[2];
-	i = 1;
-	y = 1;
-	while (!feof(file))
+class TImage
+{
+    int img[1000][1000];
+    int mx;
+    int my;
+public:
+    TImage(){}
+    TImage(int tmy, int tmx)
     {
-    fgets(ch, 2, file);
-    if (ch[0] == '\n')
+        mx=tmx;
+        my=tmy;
+    }
+    void capture()
     {
-    y++;
-    if (x<i) x=i;
-    i=1;
+        mx=12;
+        my=18;
     }
 
-    if (ch[0] == '1' && y>=3)
+    void drawHLine(int tmy, int c)
     {
-    table[y-2][i] = 1;
-    i++;
+        int i;
+        for(i=0; i<mx; i++)
+        {
+            printf("%d %d %d\n", tmy, i, c);
+            img[tmy][i]=c;
+        }
     }
-    if (ch[0] == '0' && y>=3)
+
+    void drawVLine(){
+
+    }
+
+    void show()
     {
-    table[y-2][i] = 0;
-    i++;
+        int i,j;
+        printf("P1\n");
+        printf("%d", mx);
+        printf("%d", my);
+        for (i=0; i<my; i++)
+            {
+            for(j=0; j<mx; j++)
+                printf("%d", img [i][j]);
+            printf("\n");
+            }
     }
-    ch[0] = 0;
-    }
-	y=y-3;
-	x=x-1;
-}
+};
 
-void recognize(){
-	for (i=1,j=0;j<2;i++){
-    if (table[2][i] == 1) j++;
-    if (table[2][i] == 0) h++;
-	}
-	for (i=1,j=0;j<2;i++){
-    if (table[i][2] == 1) j++;
-    if (table[i][2] == 0) g++;
-	}
-	kotv=(x-1)/(h+1);
-	kolvo=(y-1)/(g+1);
-}
-
-void chekmark(){
-	int lvo,otv;
-	for (lvo=1;lvo<kolvo+1;lvo++){
-    for (otv=1;otv<kotv+1;otv++){
-    if ((table[((1+g)/2+1)+(1+g)*(lvo-1)][((1+h)/2+1)+(1+h)*(otv-1)]) == 1) otvet[lvo]=otv;
-    }
-}
-}
-
-void otvprint(){
-	for (i=1;i<kolvo+1;i++)
-    printf("%d\n",otvet[i]);
-}
-
-void tableshow(int y, int x){
-	for (i=1;i<y+1;i++){
-    for (j=1;j<x+1;j++){
-    printf("%d",table[i][j]);
-    }
-    printf("\n");
-	}
+int main ()
+{
+    TImage a(6,4);
+    a.drawHLine(4,1);
+    a.show();
+    return 0;
 }
