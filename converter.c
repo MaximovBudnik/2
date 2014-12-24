@@ -22,7 +22,6 @@ void show();
 int main(int argc, char *argv[])
 {
 	file = fopen(argv[1], "r");
-	if (file==NULL) {printf("Р’РІРµРґРёС‚Рµ РїСѓС‚СЊ Рє РёР·РѕР±СЂР°Р¶РµРЅРёСЋ"); exit(1);}
 	recog();
 	givcol();
 	grad();
