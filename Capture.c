@@ -86,4 +86,4 @@ void present(){
 }
 
 
-Maksimov A.N.
+Budnik A.N.
