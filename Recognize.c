@@ -1,5 +1,3 @@
-MAI
-===
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -92,6 +90,3 @@ void otvout(){
 	for (i=1;i<k+1;i++)
 		printf("%d\n",otvet[i]);
 }
-
-
-Maksimov A.N.
