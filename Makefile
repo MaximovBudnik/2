@@ -1,8 +1,8 @@
-create: capture.o converter.o
+capture: capture.o converter.o
 	gcc -o capture capture.o
 	gcc -o converter converter.o
 
-create.o: capture.c
+capture.o: capture.c
 	gcc -c capture.c
 
 converter.o: converter.c
